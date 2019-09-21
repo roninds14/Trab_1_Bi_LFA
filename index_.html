@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<HTML lang="pt-BR">
+
+  <HEAD>
+    <meta charset="UTF-8">
+    <meta name="generator" content="Scriptnalz 0.0.1, http://projetos.jeancarloem.com/Scriptnalz" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <TITLE>NDFASimulator :: Simulador de Autômato Finito (Não-)Determinístico</TITLE>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+
+  </HEAD>
+
+  <body>
+    <div class="enclausurebody enclausure pagebody">
+      <section class="sectionwrapper">        
+        <div class="clearfix contentwrapper no-js">
+          <section class="principal">
+            <div>
+              <p>
+                Um Autômato Finito é uma máquina de estado, como a Máquina de Turing.
+              </p>
+              <p>Este é um trabalho da disciplina "<b>Linguagens Formais e Autômatos</b>" do curso de Ciência da Computação. O Objetivo é construir um programa - utilizando qualquer linguagem - que simule um <b>Autômato Finito Determinístico (AFD|DFA) e Autômato Finito Não-Determinístico (AFND|NFA)</b>. Assim, este programa é capaz de determinar se uma dada string é ou não aceita por um autômato, sem o uso de regex nativas à linguagem de programação.
+              </p>
+            </div>
+
+            <div>
+              <div class="sigma">
+                <h2>Alftabeto do Autômato</H2>
+                <p>Defina qual o Alfabeto reconhecido pelo Autômato. Para incluir a possiblidade de Épsilon (&epsilon;) e outros utilize a tabela abaixo:
+                </p>
+
+                <table cellpadding="0" cellspacing="0" border="0" class="curingas">
+                  <tr>
+                    <td>&epsilon;</td>
+                    <td>Para habilitar transações epsilons</td>
+                  </tr>
+
+                  <tr>
+                    <td>&Delta;</td>
+                    <td>Como um curinga para todos os digitos numéricos [0-9]</td>
+                  </tr>
+
+                  <tr>
+                    <td>&alpha;</td>
+                    <td>Como um curinga para todos os digitos alfabéticos [a-zA-Z]</td>
+                  </tr>
+
+                  <tr>
+                    <td>&omega;</td>
+                    <td>Como um curinga para todos os digitos alfanuméricos [a-zA-Z0-9]</td>
+                  </tr>
+                </table>
+
+                <h4>Informe o Alfabeto...</h4>
+                <div class="sigmago"></div>
+                <input class="main" type="text" name="alfabeto" placeholder="Alfabeto sem espaco" value="" />
+
+                <h4>...OU selecione um predefinido</h4>
+                <select id="predefinido">
+                  <option value="" disabled selected>Selecione Predefinido</option>
+                  <option value="email">Emails</option>
+                  <option value="moeda">Moeda 99.999,99</option>
+                  <option value="bit">Bit inicia 1 e termina 0</option>
+                  <option value="bitpar">Número par de 0s e 1s</option>
+                </select>
+              </div>
+
+              <div class="tbl" style='display: none;'>
+                <h2>Estados do Autômato</H2>
+                <p>Agora adicione os estados do Autômato para cada uma das transições &Sigma;, seprandos os destinos por <b>ponto</b>, <b>virgula</b> ou por <b>traço</b>.
+                </p>
+                <p>Clique/toque sobre as células da coluna ST para ativar ou desabilitar o referido estado como estado final.</p>
+
+                <br />
+                <div class="starterq">
+                  
+                </div>
+
+                <div>
+                  <table cellpadding="0" cellspacing="0" border="0" id="estados"></table>
+                  <button>Adicionar Estado</button>
+                </div>
+              </div>
+
+              <div class="avaliar" style="display: none;">
+                <h2>String a ser Avaliada</H2>
+                <p>Por último coloque alguma string para que o Autômato a avalie.
+                <div class="string"></div>
+                <input class="main" type="text" name="strvalidate" placeholder="String a ser Verificada" />
+              </div>
+            </div>
+
+            <div class='resultado'></div>
+
+            <div class='automato' style="display: none;">
+              <canvas></canvas>
+
+              <div class="passo">
+                <button class="passos prev"><< Passo Anterior</button>
+                <button class="passos next">Proximo Passo >></button>
+              </div>
+            </div>
+
+            <article></article>
+
+            <div>
+              <p><i>* Os estados em linha tracejada são aqueles que foram adicionados à etapa (coluna) por serem o <b>destino</b> de uma transição Épsilon de um estado <b>origem</b> presente na mesma coluna.</i></p>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <footer class="footerwrapper">
+        <p>Copyright 2017 &copy; RR.</p>
+      </footer>
+    </div>
+  </body>
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+  <script type="text/javascript" src="assets/js/lfa.min.js"></script>
+  <script type="text/javascript" src="assets/js/draw.min.js"></script>
+  <script type="text/javascript" src="assets/js/regex.min.js"></script>
+  <script type="text/javascript" src="assets/js/main.min.js"></script>
+
+</HTML>
