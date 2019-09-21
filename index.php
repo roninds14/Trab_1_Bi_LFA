@@ -7,14 +7,17 @@
 
     <!-- Bootstrap CSS -->    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/main.css">
+    <!--<link rel="stylesheet" href="assets/css/main.css">-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style type="text/css">
     	#regExp, #regExpText{
 			text-align:center;
 			font-weight:700;
-		}			
+		}
+		input{
+			text-align:center;
+		}						
     </style>
 
     <title>LFA Trab. B1</title>
@@ -93,9 +96,39 @@
         			</h5>
         		</div>
         		<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-        			<div class="card-body text-dark">
-                    	Parte II
-        				<?php require_once "parte_dois.php" ?>
+        			<div class="card-body">
+        				<?php //require_once "parte_dois.php" ?>
+                        <div class="row">
+                        	<div class="col-5 offset-3">
+                            	<div class="form-group">
+                                    <label for="alfab">Alfabeto</label>
+                                    <input type="text" id="alfab" class="form-control" placeholder="Sem espaço"/>
+                                </div> 
+                            </div>
+                            <div class="col-1 pt-4">
+                            	<button type="button" id="gera_tabela" class="btn btn-outline-info">
+                                	<i class="material-icons">send</i>
+                                </button>
+                            </div>
+                        </div>                       
+                        <div class="row justify-content-center" style="display:none">
+                        	<div class="col-9 offset-3">
+                            	 <label>Estados Autômatos</label>
+                            </div>  
+                        	<table id="tb_estado" class="table w-75" style="margin:auto">
+                            	<thead class="thead-dark">
+                                	<tr>
+                                    	<th>Estado</th>
+                                        <th>final</th>                                        
+                                    </tr>
+                                </thead>
+                                <tbody>                                	
+                               	</tbody>
+                            </table>
+                            <div class="col-12 text-center mt-2">
+                        		<button id="add_estado" class="btn btn-primary">Adicionar Estado</button>
+                        	</div>
+                        </div>                        
         			</div>
         		</div>
         	</div>
@@ -121,11 +154,11 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+    <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
     <script type="text/javascript" src="assets/js/lfa.min.js"></script>
     <script type="text/javascript" src="assets/js/draw.min.js"></script>
     <script type="text/javascript" src="assets/js/regex.min.js"></script>
-    <script type="text/javascript" src="assets/js/main.min.js"></script>
+    <script type="text/javascript" src="assets/js/main.min.js"></script>-->
     
     <script>
     $(document).ready(function(){
@@ -164,7 +197,85 @@
 				$("#regExpText").css("background-color","#0F0");
 			else
 				$("#regExpText").css("background-color","#f00");
+		});
+		
+		$('body').on("click","#gera_tabela",function(){
+			var letras = $("#alfab").val().split("");
+			
+			letras = letras.filter(function(este, i) {
+    			return letras.indexOf(este) === i; 
 			});
+			
+			if( !( letras.length > 1 ) )
+				return false;
+			
+			$("#tb_estado").children("thead").empty();
+			
+			$("#tb_estado").children("thead").append('<tr><th>Estado</th><th>final</th></tr>');
+			
+			for( var i = 0; i < letras.length; i++ ){
+				
+				$("#tb_estado").children("thead").children("tr").append("<th class='text-center'>"+letras[i]+"</th>");
+			}	
+			
+			$("#tb_estado").parent("div").css("display","block");
+			
+			$("#tb_estado").children("tbody").empty();
+			
+		});
+		
+		$('body').on("click","#add_estado",function(){
+			var linha = $( "#tb_estado" ).children("tbody").children("tr").length;
+			
+			var letras = $("#alfab").val().split("");
+			
+			letras = letras.filter(function(este, i) {
+    			return letras.indexOf(este) === i; 
+			});
+			
+			var str = '<tr><td class="col_1">q'+linha+'</td><td class="text-center check col_2"><input type="checkbox" id="check_'+linha+'" /></td>';
+			
+			for(var i = 0; i < letras.length; i++ )
+				str += '<td class="col_'+(i+3)+'"><input type="text" id="trans_'+linha+'_'+(i+3)+'" class="form-control num_virg"/></td>';
+				
+			str += '<td class="col_'+ (i+3) +'"><button type="button" class="btn btn-danger remove_estado">-</button></td></tr>';
+			
+			$( "#tb_estado" ).children("tbody").append( str );			
+		});
+		
+		$('body').on("click",".remove_estado",function(){
+			
+			var check = $(this).parent().siblings(".check").children("input").attr("id");
+			
+			check = check.split("_");
+			
+			var linha = parseInt( check[1] );
+			
+			var local = $(this).parent().parent().next();
+			
+			for( var i = linha; i < $( "#tb_estado" ).children("tbody").children("tr").length; i++){
+				$( $(local)[0] ).children(".col_1").html("q"+i );
+				$( $(local)[0] ).children(".col_2").children().attr("id","check_"+i);
+				
+				var j = 3;
+				
+				for(; j < $( $(local)[0] ).children().length; j++ ){
+					var coluna =  $( $(local)[0] ).children(".col_"+j).children().attr("id").split("_");
+					
+					$( $(local)[0] ).children(".col_"+j).children().attr("id","trans_"+i+"_"+j);
+				}			
+				
+				local = $( $(local)[0] ).next();
+			}
+			
+			$(this).parent().parent().remove();	
+		});
+		
+		$("body").on("keydown",".num_virg",function(e){
+			if( !/\d/.test(e.key) && !/,/.test(e.key) )
+				return false;
+		
+		});
     });
     </script>
 </body>
