@@ -1,37 +1,3 @@
-/*
- * The MIT License
- *
- * Copyright 2017 Jean Carlo de Elias Moreira.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *
- *==============================================================================
- *
- * NFASimulator
- * Javascript Object
- *
- * @author     Jean Carlo de Elias Moreira | https://www.jeancarloem.com
- * @license    MIT | https://opensource.org/licenses/MIT
- * @copyright  © 2017 Jean Carlo EM
- * @link       https://opensource.jeancarloem.com/NFASimulator/
- */
-
 window.predefs = [
   {'json': {"abto": ["ω", ".", "-", "_", "@", "ε"], "destinos": [[1, "", "", "", "", ""], ["1,5", 2, 4, 3, "", ""], [5, "", "", "", "", ""], [5, "", "", 3, "", ""], [5, "", "", "", "", ""], [5, "", "", "", 6, 1], [7, "", "", "", "", ""], ["7,10", 8, 9, "", "", ""], ["10", "", "", "", "", ""], ["10", "", "", "", "", ""], ["10", "11", "", "", "", 7], ["12", "", "", "", "", ""], ["14", "", "13", "", "", ""], ["14", "", "", "", "", ""], ["14", "", "13", "", "", ""]], "start": 0, "finais": [14], "steps": [[]]},
     "chars": "ω.-_@ε"
