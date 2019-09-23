@@ -128,7 +128,21 @@
                             <div class="col-12 text-center mt-2">
                         		<button id="add_estado" class="btn btn-primary">Adicionar Estado</button>
                         	</div>
-                        </div>                        
+                        </div>
+                        <div class="row" style="display:none">
+                        	<div class="col-5 offset-3">
+                            	<div class="form-group">
+                                    <label for="string">String a ser avaliada</label>
+                                    <input type="text" id="string" class="form-control"/>
+                                </div> 
+                            </div>
+                            <div class="col-1 pt-4">
+                            	<button type="button" id="desenha" class="btn btn-outline-info">
+                                	<i class="material-icons">send</i>
+                                </button>
+                            </div>
+                           <div id="svg"></div>
+                        </div>                       
         			</div>
         		</div>
         	</div>
@@ -160,123 +174,6 @@
     <script type="text/javascript" src="assets/js/regex.min.js"></script>
     <script type="text/javascript" src="assets/js/main.min.js"></script>-->
     
-    <script>
-    $(document).ready(function(){
-        $('.collapse').collapse()
-		
-		$('body').on("keyup", "#regExpText",function(){
-			var regExp = new RegExp("^"+ $("#regExp").val() +"$");
-			
-			var texto = $(this).val();	
-			
-			if( regExp.test(texto) ) 
-				$(this).css("background-color","#0F0");
-			else
-				$(this).css("background-color","#f00");
-			
-		});
-		
-		$('body').on("keyup", "#regExp",function(){
-			var regExp = new RegExp("^"+ $(this).val() +"$");
-			
-			var texto = $("#regExpText").val();	
-			
-			if( regExp.test(texto) ) 
-				$("#regExpText").css("background-color","#0F0");
-			else
-				$("#regExpText").css("background-color","#f00");
-			
-		});
-		
-		$('body').on("change","#expRegExp",function(){
-			$("#regExp").val( $(this).val() );
-			
-			var texto = $("#regExpText").val();	
-			
-			if( regExp.test(texto) ) 
-				$("#regExpText").css("background-color","#0F0");
-			else
-				$("#regExpText").css("background-color","#f00");
-		});
-		
-		$('body').on("click","#gera_tabela",function(){
-			var letras = $("#alfab").val().split("");
-			
-			letras = letras.filter(function(este, i) {
-    			return letras.indexOf(este) === i; 
-			});
-			
-			if( !( letras.length > 1 ) )
-				return false;
-			
-			$("#tb_estado").children("thead").empty();
-			
-			$("#tb_estado").children("thead").append('<tr><th>Estado</th><th>final</th></tr>');
-			
-			for( var i = 0; i < letras.length; i++ ){
-				
-				$("#tb_estado").children("thead").children("tr").append("<th class='text-center'>"+letras[i]+"</th>");
-			}	
-			
-			$("#tb_estado").parent("div").css("display","block");
-			
-			$("#tb_estado").children("tbody").empty();
-			
-		});
-		
-		$('body').on("click","#add_estado",function(){
-			var linha = $( "#tb_estado" ).children("tbody").children("tr").length;
-			
-			var letras = $("#alfab").val().split("");
-			
-			letras = letras.filter(function(este, i) {
-    			return letras.indexOf(este) === i; 
-			});
-			
-			var str = '<tr><td class="col_1">q'+linha+'</td><td class="text-center check col_2"><input type="checkbox" id="check_'+linha+'" /></td>';
-			
-			for(var i = 0; i < letras.length; i++ )
-				str += '<td class="col_'+(i+3)+'"><input type="text" id="trans_'+linha+'_'+(i+3)+'" class="form-control num_virg"/></td>';
-				
-			str += '<td class="col_'+ (i+3) +'"><button type="button" class="btn btn-danger remove_estado">-</button></td></tr>';
-			
-			$( "#tb_estado" ).children("tbody").append( str );			
-		});
-		
-		$('body').on("click",".remove_estado",function(){
-			
-			var check = $(this).parent().siblings(".check").children("input").attr("id");
-			
-			check = check.split("_");
-			
-			var linha = parseInt( check[1] );
-			
-			var local = $(this).parent().parent().next();
-			
-			for( var i = linha; i < $( "#tb_estado" ).children("tbody").children("tr").length; i++){
-				$( $(local)[0] ).children(".col_1").html("q"+i );
-				$( $(local)[0] ).children(".col_2").children().attr("id","check_"+i);
-				
-				var j = 3;
-				
-				for(; j < $( $(local)[0] ).children().length; j++ ){
-					var coluna =  $( $(local)[0] ).children(".col_"+j).children().attr("id").split("_");
-					
-					$( $(local)[0] ).children(".col_"+j).children().attr("id","trans_"+i+"_"+j);
-				}			
-				
-				local = $( $(local)[0] ).next();
-			}
-			
-			$(this).parent().parent().remove();	
-		});
-		
-		$("body").on("keydown",".num_virg",function(e){
-			if( !/\d/.test(e.key) && !/,/.test(e.key) )
-				return false;
-		
-		});
-    });
-    </script>
+    <script src="assets/js/script.js" type="text/javascript"></script>
 </body>
 </html>
