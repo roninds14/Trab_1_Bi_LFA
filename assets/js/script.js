@@ -1,5 +1,5 @@
 // JavaScript Document
-var tamanho, centro;
+var tamanho, centro, letras, transicoes = [];
 
 $(document).ready(function(){
 	tamanho = window.innerWidth / 4;
@@ -47,7 +47,7 @@ $(document).ready(function(){
 	});
 	
 	$('body').on("click","#gera_tabela",function(){
-		var letras = $("#alfab").val().split("");
+		letras = $("#alfab").val().split("");
 		
 		letras = letras.filter(function(este, i) {
 			return letras.indexOf(este) === i; 
@@ -72,13 +72,7 @@ $(document).ready(function(){
 	});
 	
 	$('body').on("click","#add_estado",function(){
-		var linha = $( "#tb_estado" ).children("tbody").children("tr").length;
-		
-		var letras = $("#alfab").val().split("");
-		
-		letras = letras.filter(function(este, i) {
-			return letras.indexOf(este) === i; 
-		});
+		var linha = $( "#tb_estado" ).children("tbody").children("tr").length;		
 		
 		var str = '<tr><td class="col_1">q'+linha+'</td><td class="text-center check col_2"><input type="checkbox" id="check_'+linha+'" /></td>';
 		
@@ -153,6 +147,14 @@ function desenhar( qtd ){
 	var circulos, texto;
 	
 	for( var i = 0; i <  qtd; i ++ ){
+			transicoes[i] = [];
+		
+			for( var j = 0; j < letras.length; j++){
+				var local = "#trans_"+i+"_"+(parseInt(j+3));
+				
+				transicoes[i][j] = $(local).val();
+			}
+		
 			var x = centro + Math.sin( (i * Math.PI * 2 )/ qtd ) * 150;
 			var y = centro - Math.cos( (i * Math.PI * 2 )/ qtd ) * 150;
 			
@@ -161,6 +163,6 @@ function desenhar( qtd ){
 			texto += '<text x="'+(x-10)+'" y="'+parseInt(y+5)+'" fill="black">q'+i+'</text>';
 	}
 	
-	$("#svg").append( svg+circulos+texto+"</svg>");
+	$("#svg").append( svg+circulos+texto+"</svg>");	
 	
 }
