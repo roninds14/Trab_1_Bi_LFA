@@ -125,8 +125,15 @@ $(document).ready(function(){
 	
 	$("body").on("keydown",".num_virg",function(e){
 		if( !/\d/.test(e.key) && !/,/.test(e.key) && e.keyCode!=8 && e.keyCode!=46 && e.keyCode!=37 && e.keyCode != 39 )
-			return false;
+			return false;	
 	
+	});
+	
+	$("body").on("keyup",".num_virg",function(e){
+		var qtd = $("#tb_estado").children("tbody").children("tr").length;
+			
+		if(  qtd && $("#string").val() )
+			desenhar( qtd );
 	});
 	
 	$(document).on("click","#desenha",function(){
@@ -146,23 +153,47 @@ function desenhar( qtd ){
 	
 	var circulos, texto;
 	
+	transicoes = [];
+	
+	var linha = "";
+	
 	for( var i = 0; i <  qtd; i ++ ){
 			transicoes[i] = [];
-		
+			
 			for( var j = 0; j < letras.length; j++){
 				var local = "#trans_"+i+"_"+(parseInt(j+3));
 				
 				transicoes[i][j] = $(local).val();
+				
+				var final = ($(local).val()).split(",");			
+				
+				for( var k = 0; k < final.length; k++ ) {
+					if( /\d/.test( final[k] ) && parseInt( final[k] )< parseInt( qtd ) ){
+						var x1 = centro + Math.sin( (i * Math.PI * 2 )/ qtd ) * 150;
+						var y1 = centro - Math.cos( (i * Math.PI * 2 )/ qtd ) * 150;
+						
+						var x2 = centro + Math.sin( (final[k] * Math.PI * 2 )/ qtd ) * 150;
+						var y2 = centro - Math.cos( (final[k] * Math.PI * 2 )/ qtd ) * 150;
+						
+						if ( parseInt(x2-x1) )
+							linha += '<path d="M '+parseInt(x1)+' '+parseInt(y1)+' q 150 100 '+parseInt(x2-x1)+' '+parseInt(y2-y1)+'" stroke="blue" stroke-width="1" fill="none" />';
+						else
+							linha += '<circle cx="'+parseInt(x1+20)+'" cy="'+parseInt(y1-30)+'" r="'+(j+1)*10+'" stroke="blue" stroke-width="1" fill="rgba(0,0,0,0)" />'
+							
+							linha += '<text x="'+parseInt(x2+((j+1)*20))+'" y="'+parseInt(y2-20)+'" fill="red">'+letras[j]+'</text>';
+						
+					}
+				}
 			}
 		
 			var x = centro + Math.sin( (i * Math.PI * 2 )/ qtd ) * 150;
-			var y = centro - Math.cos( (i * Math.PI * 2 )/ qtd ) * 150;
+			var y = centro - Math.cos( (i * Math.PI * 2 )/ qtd ) * 150;			
 			
 			circulos += '<circle cx="'+x+'" cy="'+y+'" r="30" stroke="black" stroke-width="1" fill="#ccc" />'
 			
 			texto += '<text x="'+(x-10)+'" y="'+parseInt(y+5)+'" fill="black">q'+i+'</text>';
 	}
 	
-	$("#svg").append( svg+circulos+texto+"</svg>");	
+	$("#svg").append( svg+linha+circulos+texto+"</svg>");	
 	
 }
