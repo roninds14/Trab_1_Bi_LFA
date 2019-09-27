@@ -142,6 +142,62 @@ $(document).ready(function(){
 		if(  qtd && $("#string").val() )
 			desenhar( qtd );	
 	});
+	
+	$(document).on("keydown", "#variaveis", function(e){
+		if( /^[A-Z]$/.test( e.key ) || e.keyCode==8 || e.keyCode==46 || e.keyCode==37 || e.keyCode == 39){
+			$("#aviso_var").html("");
+			
+			if( $(this).val().search( e.key ) != -1  )
+				return false;
+		}
+		else{ 
+			$("#aviso_var").html("Maiscúlas apenas!");
+			
+			return false;
+		}
+		
+	});
+	
+	
+	$(document).on("keydown", "#terminais", function(e){
+		if( /^[a-z]$/.test( e.key ) || e.keyCode==8 || e.keyCode==46 || e.keyCode==37 || e.keyCode == 39){
+			$("#aviso_ter").html("");
+			
+			if( $(this).val().search( e.key ) != -1  )
+				return false;
+		}
+		else{ 
+			$("#aviso_ter").html("Minúsculas apenas!");
+			
+			return false;
+		}
+		
+	});
+	
+	$(document).on("keydown", "#inicial", function(e){
+		if( /^[A-Z]$/.test( e.key ) ){
+			if( $("#variaveis").val().search( e.key ) == -1  || $(this).val().search( e.key ) != -1 )
+				return false;
+		}
+		else if(e.keyCode==8 || e.keyCode==46 || e.keyCode==37 || e.keyCode == 39)
+			return true;
+		else{ 
+			return false;
+		}
+		
+	});
+	
+	$(document).on("click", "#btn_regras", function(){
+		if( $("#variaveis").val()!="" && $("#terminais").val()!="" && $("#inicial").val()!="" ){
+			$(this).parent().parent().next().css("display","flex");
+			
+			for( var i = 0; i < $("#variaveis").val().length; i++ )
+				$(this).parent().parent().next().children().append('<div class="input-group mt-1"><div class="input-group-prepend"><span class="input-group-text" id="basic-addon1">'+$("#variaveis").val()[i]+'</span></div><input type="text" class="form-control regras" placeholder="separe por \'|\'"></div>');
+		
+		
+		}
+	});
+	
 });
 
 function desenhar( qtd ){	

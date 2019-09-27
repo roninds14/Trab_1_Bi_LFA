@@ -156,7 +156,36 @@
         		</div>
         		<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                     <div class="card-body">
-                        Parte III
+                       <div class="row" >
+                       		<div class="col-4">
+                            	<div class="form-group">
+                                    <label for="variaveis">Variáveis <small id="aviso_var" style="color:red"></small></label>
+                                    <input type="text" id="variaveis" class="form-control" placeholder="Sem espaço"/>
+                                </div> 
+                            </div>
+                            <div class="col-4">
+                            	<div class="form-group">
+                                    <label for="terminais">Terminais <small id="aviso_ter" style="color:red"></small></label>
+                                    <input type="text" id="terminais" class="form-control" placeholder="Sem espaço"/>
+                                </div> 
+                            </div>
+                            <div class="col-3">
+                            	<div class="form-group">
+                                    <label for="alfab">Iniciais</label>
+                                    <input type="text" id="inicial" class="form-control" placeholder="Sem espaço"/>
+                                </div> 
+                            </div>
+                            <div class="col-1 pt-4">
+                            	<button type="button" id="btn_regras" class="btn btn-outline-info">
+                                	<i class="material-icons">send</i>
+                                </button>
+                            </div>
+                       </div>
+                       <div class="row" style="display:none">
+                       		<div class="col-8 offset-2"> 	
+                                <h4>Regras <small>(separe por '|')</small></h4>
+                            </div>
+                       </div>
         			</div>
         		</div>
         	</div>
