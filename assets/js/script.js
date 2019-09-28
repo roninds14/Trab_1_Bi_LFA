@@ -1,5 +1,5 @@
 // JavaScript Document
-var tamanho, centro, letras, transicoes = [];
+var tamanho, centro, letras, transicoes = [], gr_regras = [];
 
 $(document).ready(function(){
 	tamanho = window.innerWidth / 4;
@@ -203,9 +203,26 @@ $(document).ready(function(){
 		}
 	});
 	
+	$(document).on("keydown", ".regras", function(e){
+		if( /^[a-zA-Z]$/.test( e.key ) ){
+			if( $("#variaveis").val().search( e.key ) == -1  && $("#terminais").val().search( e.key ) == -1 )
+				return false;
+		}
+		else if(e.keyCode==8 || e.keyCode==46 || e.keyCode==37 || e.keyCode == 39 || e.keyCode == 226 )
+			return true;
+		else{ 
+			
+			return false;
+		}
+		
+	});
+	
 	$(document).on("click", "#btn_valida_gr",function(){
 		if( $("#string_gr").val()!="")
-			$("#resultado_gr").html("A string foi REJEITADA!");	
+			if( validar() )
+				$("#resultado_gr").html("String ACEITA!");
+			else
+				$("#resultado_gr").html("String REJEITADA!");
 	});
 	
 });
@@ -263,3 +280,27 @@ function desenhar( qtd ){
 	$("#svg").append( svg+linha+circulos+texto+"</svg>");	
 	
 }
+
+function validar(){
+	var i = 0;
+	
+	gr_regras = [];
+	
+	$(".regras").each(function(){
+		gr_regras[i] = [];
+		
+		var regras = $(this).val().split("|");
+		
+		gr_regras[i][0] = $(this).prev().children().html();
+		
+		for( var j = 1; j <= regras.length; j++ ){
+			regras[j-1] = regras[j-1].trim();
+			
+			gr_regras[i][j] = regras[j-1];
+		}
+		
+		i++;
+	});
+	
+	return false;
+};

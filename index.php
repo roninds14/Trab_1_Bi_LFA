@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!--<link rel="stylesheet" href="assets/css/main.css">-->
+    <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style type="text/css">
@@ -22,7 +22,7 @@
 
     <title>LFA Trab. B1</title>
 </head>
-<body>
+<body style="background-color:#ddd">
     <nav class="navbar navbar-dark bg-dark justify-content-center mb-5 text-white">
         <h2>Trabalho 1º Bimestre</h2>
     </nav>
@@ -91,52 +91,8 @@
         		</div>
         		<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
         			<div class="card-body">
-        				<?php //require_once "parte_dois.php" ?>
-                        <div class="row">
-                        	<div class="col-5 offset-3">
-                            	<div class="form-group">
-                                    <label for="alfab">Alfabeto</label>
-                                    <input type="text" id="alfab" class="form-control" placeholder="Sem espaço"/>
-                                </div> 
-                            </div>
-                            <div class="col-1 pt-4">
-                            	<button type="button" id="gera_tabela" class="btn btn-outline-info">
-                                	<i class="material-icons">send</i>
-                                </button>
-                            </div>
-                        </div>                       
-                        <div class="row justify-content-center" style="display:none">
-                        	<div class="col-9 offset-3">
-                            	 <label>Estados Autômatos</label>
-                            </div>  
-                        	<table id="tb_estado" class="table w-75" style="margin:auto">
-                            	<thead class="thead-dark">
-                                	<tr>
-                                    	<th>Estado</th>
-                                        <th>final</th>                                        
-                                    </tr>
-                                </thead>
-                                <tbody>                                	
-                               	</tbody>
-                            </table>
-                            <div class="col-12 text-center mt-2">
-                        		<button id="add_estado" class="btn btn-primary">Adicionar Estado</button>
-                        	</div>
-                        </div>
-                        <div class="row" style="display:none">
-                        	<div class="col-5 offset-3">
-                            	<div class="form-group">
-                                    <label for="string">String a ser avaliada</label>
-                                    <input type="text" id="string" class="form-control"/>
-                                </div> 
-                            </div>
-                            <div class="col-1 pt-4">
-                            	<button type="button" id="desenha" class="btn btn-outline-info">
-                                	<i class="material-icons">send</i>
-                                </button>
-                            </div>
-                           <div id="svg"></div>
-                        </div>                       
+        				<?php require_once "parte_dois.php" ?>
+                                              
         			</div>
         		</div>
         	</div>
@@ -202,11 +158,11 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
     <script type="text/javascript" src="assets/js/lfa.min.js"></script>
     <script type="text/javascript" src="assets/js/draw.min.js"></script>
     <script type="text/javascript" src="assets/js/regex.min.js"></script>
-    <script type="text/javascript" src="assets/js/main.min.js"></script>-->
+    <script type="text/javascript" src="assets/js/main.min.js"></script>
     
     <script src="assets/js/script.js" type="text/javascript"></script>
 </body>
