@@ -190,12 +190,22 @@ $(document).ready(function(){
 	$(document).on("click", "#btn_regras", function(){
 		if( $("#variaveis").val()!="" && $("#terminais").val()!="" && $("#inicial").val()!="" ){
 			$(this).parent().parent().next().css("display","flex");
+			$(this).parent().parent().next().next().css("display","flex");
+			
+			$(this).parent().parent().next().children().empty();
+			
+			$(this).parent().parent().next().children().append('<h4>Regras <small>(separe por \'|\')</small></h4>');
 			
 			for( var i = 0; i < $("#variaveis").val().length; i++ )
 				$(this).parent().parent().next().children().append('<div class="input-group mt-1"><div class="input-group-prepend"><span class="input-group-text" id="basic-addon1">'+$("#variaveis").val()[i]+'</span></div><input type="text" class="form-control regras" placeholder="separe por \'|\'"></div>');
 		
 		
 		}
+	});
+	
+	$(document).on("click", "#btn_valida_gr",function(){
+		if( $("#string_gr").val()!="")
+			$("#resultado_gr").html("A string foi REJEITADA!");	
 	});
 	
 });

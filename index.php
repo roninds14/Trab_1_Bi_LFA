@@ -30,12 +30,8 @@
     <section class="container">
         <div id="accordion">
         	<div class="card">
-        		<div class="card-header" id="headingOne">
-        			<h5 class="mb-0">
-        				<button class="btn btn-dark btn-lg w-100" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        					Representação de ER
-        				</button>
-        			</h5>
+        		<div class="card-header bg-dark text-center" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                	<h5 class="text-white">Expressão Regular</h5>
         		</div>
         
                 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
@@ -88,11 +84,9 @@
                 </div>
             </div>
         	<div class="card">
-        		<div class="card-header" id="headingTwo">
-        			<h5 class="mb-0">
-        				<button class="btn btn-dark btn-lg collapsed w-100" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-        					Simluação de autômatos finitos através de diagramas de transições
-        				</button>
+        		<div class="card-header bg-dark text-center" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        			<h5 class="text-white">
+       					Autômato finito não deterministico
         			</h5>
         		</div>
         		<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
@@ -147,11 +141,9 @@
         		</div>
         	</div>
         	<div class="card">
-        		<div class="card-header" id="headingThree">
-        			<h5 class="mb-0">
-        				<button class="btn btn-dark btn-lg w-100 collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-        					Especificar e simular gramáticas regulares
-        				</button>
+        		<div class="card-header bg-dark text-center" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        			<h5 class="text-white">
+                    	Gramáticas regulares
         			</h5>
         		</div>
         		<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
@@ -171,7 +163,7 @@
                             </div>
                             <div class="col-3">
                             	<div class="form-group">
-                                    <label for="alfab">Iniciais</label>
+                                    <label for="inicial">Iniciais</label>
                                     <input type="text" id="inicial" class="form-control" placeholder="Sem espaço"/>
                                 </div> 
                             </div>
@@ -182,9 +174,22 @@
                             </div>
                        </div>
                        <div class="row" style="display:none">
-                       		<div class="col-8 offset-2"> 	
-                                <h4>Regras <small>(separe por '|')</small></h4>
+                       		<div class="col-8 offset-2">
                             </div>
+                       </div>                      
+                       <div class="row mt-5" style="display:none">
+                       		<div class="col-7 offset-2">
+                                <div class="form-group">
+                                    <label for="string_gr">Digite uma string para validar</label>
+                                    <input type="text" id="string_gr" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="col-1 pt-4">
+                            	<button type="button" id="btn_valida_gr" class="btn btn-outline-info">
+                                	<i class="material-icons">send</i>
+                                </button>
+                            </div>
+                            <h4 class="col-12 text-center" id="resultado_gr"></h4>
                        </div>
         			</div>
         		</div>
