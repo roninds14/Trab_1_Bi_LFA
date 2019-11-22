@@ -3,7 +3,7 @@ var tamanho, centro, letras, transicoes = [], gr_regras = [];
 
 $(document).ready(function(){
 	tamanho = window.innerWidth / 4;
-	centro = tamanho / 2;
+	centro = parseInt(tamanho*1.5) / 2;
 	
 	$("svg").attr("width", tamanho + "px");
 	$("svg").attr("height", tamanho + "px");
@@ -191,6 +191,7 @@ $(document).ready(function(){
 		if( $("#variaveis").val()!="" && $("#terminais").val()!="" && $("#inicial").val()!="" ){
 			$(this).parent().parent().next().css("display","flex");
 			$(this).parent().parent().next().next().css("display","flex");
+			$(this).parent().parent().next().next().next().css("display","flex");
 			
 			$(this).parent().parent().next().children().empty();
 			
@@ -225,14 +226,24 @@ $(document).ready(function(){
 				$("#resultado_gr").html("String REJEITADA!");
 	});
 	
+	$(".salvar").click(function(){
+		$.post("salvar.php", {
+			tipo: $(this).attr("data-tipo")
+		},		
+		function( data, status ){			
+			alert(data);
+				
+		});	
+	});
+	
 });
 
 function desenhar( qtd ){	
- 	$("#svg").css({"width": tamanho+"px","height":tamanho+"px","margin":"0 auto"});
+ 	$("#svg").css({"width": parseInt(tamanho*1.5)+"px","height":parseInt(tamanho*1.5)+"px","margin":"0 auto"});
 	
 	$("#svg").empty();
 	
-	var svg = "<svg width='"+tamanho+"px' height='"+tamanho+"px'>";
+	var svg = "<svg width='"+parseInt(tamanho*1.5)+"px' height='"+parseInt(tamanho*1.5)+"px'>";
 	
 	var circulos, texto;
 	

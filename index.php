@@ -1,5 +1,5 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="pt">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/main.css">
+    <!-- <link rel="stylesheet" href="assets/css/main.css"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style type="text/css">
@@ -50,16 +50,19 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>                            
                             <div class="col-6">
                             	<div class="form-group">
                                     <label for="regExp">Texto</label>
                                     <input type="text" id="regExpText" class="form-control"/>
                                 </div>                            
                             </div>
+                            <div class="col-4 offset-4 justify-content-center">
+                            	<div class="btn btn-success btn-block mb-3 salvar" data-tipo="ER">Salvar</div>
+                            </div>
                             <div class="col-6 offset-3">
                             	<div class="form-group">
-                                    <label for="expRegExp">Texto</label>
+                                    <label for="expRegExp">Pré-definidos</label>
                                     <select id="expRegExp" class="form-control">
                                     	<option value="\w">Selecione</option>
                                         <option value="([1-9]|0[1-9]|[1,2][0-9]|3[0,1])/([1-9]|1[0,1,2])/\d{4}">Data (dd/mm/aaaa)</option>
@@ -91,8 +94,55 @@
         		</div>
         		<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
         			<div class="card-body">
-        				<?php require_once "parte_dois.php" ?>
-                                              
+        				<?php //require_once "parte_dois.php" ?>
+                                                    <div class="row">
+						<div class="col-5 offset-3">
+							<div class="form-group">
+								<label for="alfab">Alfabeto</label>
+								<input type="text" id="alfab" class="form-control" placeholder="Sem espaço"/>
+							</div> 
+						</div>
+						<div class="col-1 pt-4">
+							<button type="button" id="gera_tabela" class="btn btn-outline-info">
+								<i class="material-icons">send</i>
+							</button>
+						</div>
+					</div>                       
+					<div class="row justify-content-center" style="display:none">
+						<div class="col-9 offset-3">
+							 <label>Estados Autômatos</label>
+						</div>  
+						<table id="tb_estado" class="table w-75" style="margin:auto">
+							<thead class="thead-dark">
+								<tr>
+									<th>Estado</th>
+									<th>final</th>                                        
+								</tr>
+							</thead>
+							<tbody>                                	
+							</tbody>
+						</table>
+						<div class="col-12 text-center mt-2">
+							<button id="add_estado" class="btn btn-primary">Adicionar Estado</button>
+						</div>
+                        <div class="col-12 text-center mt-2 mb-2">
+                        	<button class="btn btn-success mt-2 mb-2 salvar" data-tipo="AF">Salvar</button>
+                        </div>
+					</div> 
+					<div class="row" style="display:none">
+						<div class="col-5 offset-3">
+							<div class="form-group">
+								<label for="string">String a ser avaliada</label>
+								<input type="text" id="string" class="form-control"/>
+							</div> 
+						</div>
+						<div class="col-1 pt-4">
+							<button type="button" id="desenha" class="btn btn-outline-info">
+								<i class="material-icons">send</i>
+							</button>
+						</div>
+					   <div id="svg"></div>
+					</div>                  
         			</div>
         		</div>
         	</div>
@@ -131,10 +181,13 @@
                        </div>
                        <div class="row" style="display:none">
                        		<div class="col-8 offset-2">
-                            </div>
-                       </div>                      
+                            </div>                            
+                       </div>
+                       <div class="row text-center" style="display:none">
+                       		<button class="col-2 btn btn-success salvar mt-3" data-tipo="GR">Salvar</button>
+                       </div>
                        <div class="row mt-5" style="display:none">
-                       		<div class="col-7 offset-2">
+                            <div class="col-7">
                                 <div class="form-group">
                                     <label for="string_gr">Digite uma string para validar</label>
                                     <input type="text" id="string_gr" class="form-control"/>
@@ -154,8 +207,8 @@
     </section>
 
     <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
@@ -163,6 +216,7 @@
     <script type="text/javascript" src="assets/js/draw.min.js"></script>
     <script type="text/javascript" src="assets/js/regex.min.js"></script>
     <script type="text/javascript" src="assets/js/main.min.js"></script>
+    
     
     <script src="assets/js/script.js" type="text/javascript"></script>
 </body>
