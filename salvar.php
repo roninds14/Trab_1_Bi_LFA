@@ -43,7 +43,7 @@ function salvar_ER( $data){
 		
 	xmlwriter_end_element($xw);	
 	
-	$nome = "ER_".date_format(date_create(), 'u').".xml";
+	$nome = "xml/ER_".date_format(date_create(), 'u').".xml";
 	$arquivo = fopen( $nome , "w+");
 	fwrite( $arquivo, xmlwriter_output_memory($xw) );
 	fclose( $arquivo );

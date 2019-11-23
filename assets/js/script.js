@@ -193,14 +193,26 @@ $(document).ready(function(){
 			$(this).parent().parent().next().next().css("display","flex");
 			$(this).parent().parent().next().next().next().css("display","flex");
 			
-			$(this).parent().parent().next().children().empty();
+			$(this).parent().parent().next().children().empty();		
 			
-			$(this).parent().parent().next().children().append('<h4>Regras <small>(separe por \'|\')</small></h4>');
+			for( var i = 0; i < $("#variaveis").val().length; i++ ){
+				var regra;
+				
+				if( $("#variaveis").val()[i] == $("#inicial").val() ){
+					regra = '<div class="input-group mt-1"><div class="input-group-prepend"><span class="input-group-text" id="basic-addon1">'+$("#variaveis").val()[i]+'</span></div><input type="text" class="form-control regras" placeholder="separe por \'|\'"></div>';
+				
+					$(this).parent().parent().next().children().prepend(regra);
+					
+					continue;
+				}
+				else 
+					regra = '<div class="input-group mt-1"><div class="input-group-prepend"><span class="input-group-text" id="basic-addon1">'+$("#variaveis").val()[i]+'</span></div><input type="text" class="form-control regras" placeholder="separe por \'|\'"></div>';
 			
-			for( var i = 0; i < $("#variaveis").val().length; i++ )
-				$(this).parent().parent().next().children().append('<div class="input-group mt-1"><div class="input-group-prepend"><span class="input-group-text" id="basic-addon1">'+$("#variaveis").val()[i]+'</span></div><input type="text" class="form-control regras" placeholder="separe por \'|\'"></div>');
+				$(this).parent().parent().next().children().append(regra);
+				
+			}
 		
-		
+			$(this).parent().parent().next().children().prepend('<h4>Regras <small>(separe por \'|\')</small></h4>');
 		}
 	});
 	
@@ -230,18 +242,33 @@ $(document).ready(function(){
 		var valor = "";
 		
 		if( $(this).attr("data-tipo") == "ER" )
-			valor = $("#regExp").val();		
+			valor = $("#regExp").val();
+		else if( $(this).attr("data-tipo") == "GR" ){
+		
+		}
 		
 		$.post("salvar.php", {
 			tipo: $(this).attr("data-tipo"),
 			data: valor
 		},		
 		function( data, status ){
-			alert( data );
+			$("#d_ER").attr("href", data );
+			
+			$("#d_ER").css("display","flex");
+			
 		});	
 	});
 	
+	$(".download").click(function(){
+		
+		$(this).css("display","none");	
+	});
+	
 });
+
+window.onbeforeunload = function() { 
+	$.post("apagar.php");
+}; 
 
 function desenhar( qtd ){	
  	$("#svg").css({"width": parseInt(tamanho*1.5)+"px","height":parseInt(tamanho*1.5)+"px","margin":"0 auto"});

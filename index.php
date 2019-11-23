@@ -60,7 +60,7 @@
                             <div class="col-4 offset-4 justify-content-center">
                             	<div class="btn btn-success btn-block mb-3 salvar" data-tipo="ER">Salvar</div>
                                 
-                                <a id ="download" target="_blank"></a>
+                                <a id = "d_ER" class="btn btn-info btn-block mb-3 justify-content-center download" target="_blank" style="display:none">Download</a>
                             </div>
                             <div class="col-6 offset-3">
                             	<div class="form-group">
@@ -171,8 +171,8 @@
                             </div>
                             <div class="col-3">
                             	<div class="form-group">
-                                    <label for="inicial">Iniciais</label>
-                                    <input type="text" id="inicial" class="form-control" placeholder="Sem espaço"/>
+                                    <label for="inicial">Inicial</label>
+                                    <input type="text" id="inicial" class="form-control" placeholder="Sem espaço" maxlength="1"/>
                                 </div> 
                             </div>
                             <div class="col-1 pt-4">
