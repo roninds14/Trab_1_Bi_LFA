@@ -183,11 +183,11 @@
                        		<div class="col-8 offset-2">
                             </div>                            
                        </div>
-                       <div class="row text-center" style="display:none">
-                       		<button class="col-2 btn btn-success salvar mt-3" data-tipo="GR">Salvar</button>
+                       <div class="row justify-content-center" style="display:none">
+                       		<button class="btn btn-success salvar mt-3" data-tipo="GR">Salvar</button>
                        </div>
                        <div class="row mt-5" style="display:none">
-                            <div class="col-7">
+                            <div class="col-7 offset-2">
                                 <div class="form-group">
                                     <label for="string_gr">Digite uma string para validar</label>
                                     <input type="text" id="string_gr" class="form-control"/>

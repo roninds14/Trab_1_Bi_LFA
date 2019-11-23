@@ -227,8 +227,14 @@ $(document).ready(function(){
 	});
 	
 	$(".salvar").click(function(){
+		var valor = "";
+		
+		if( $(this).attr("data-tipo") == "ER" )
+			valor = $("#regExp").val();		
+		
 		$.post("salvar.php", {
-			tipo: $(this).attr("data-tipo")
+			tipo: $(this).attr("data-tipo"),
+			data: valor
 		},		
 		function( data, status ){			
 			alert(data);

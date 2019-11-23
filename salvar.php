@@ -1,9 +1,25 @@
 <?php 
 
 $tipo = $_REQUEST["tipo"];
+$data = $_REQUEST["data"];
 
-function salvar_ER(){
-	echo "ER";	
+switch ( $tipo ){
+case "ER":
+	salvar_ER( $data );
+	break;
+case "AF":
+	salvar_AF();
+	break;
+case "GR":
+	salvar_GR();
+	break;
+default: 
+	echo "Erro desconhecido";
+
+}
+
+function salvar_ER($tipo){
+	echo $tipo;	
 };
 
 function salvar_AF(){
@@ -13,20 +29,5 @@ function salvar_AF(){
 function salvar_GR(){
 	echo "GR";	
 };
-
-switch ( $tipo ){
-	case "ER":
-		salvar_ER();
-		break;
-	case "AF":
-		salvar_AF();
-		break;
-	case "GR":
-		salvar_GR();
-		break;
-	default: 
-		echo "Erro desconhecido";
-	
-	}
 
 ?>
