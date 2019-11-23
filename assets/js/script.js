@@ -241,10 +241,30 @@ $(document).ready(function(){
 	$(".salvar").click(function(){
 		var valor = "";
 		
+		var onde = "#d_" + $(this).attr("data-tipo");
+		
 		if( $(this).attr("data-tipo") == "ER" )
 			valor = $("#regExp").val();
 		else if( $(this).attr("data-tipo") == "GR" ){
-		
+			var vetor1 = [], vetor2 = [], j = 0;			
+			
+			$(".regras").each(function(index, element) {
+				
+                var deriv = ( $(element).val() ).split("|");
+				
+				for( var i = 0; i < deriv.length; i++ ){
+					vetor2 = [];
+					
+					vetor2[0] = $(element).prev().children().html();
+					vetor2[1] = deriv[i];
+					
+					vetor1[ j ] = vetor2;
+					
+					j++;				
+				}		
+            });
+			
+			valor = vetor1;
 		}
 		
 		$.post("salvar.php", {
@@ -252,9 +272,10 @@ $(document).ready(function(){
 			data: valor
 		},		
 		function( data, status ){
-			$("#d_ER").attr("href", data );
 			
-			$("#d_ER").css("display","flex");
+			$( onde ).attr("href", data );
+			
+			$( onde ).css("display","flex");
 			
 		});	
 	});

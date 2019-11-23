@@ -187,6 +187,8 @@
                        </div>
                        <div class="row justify-content-center" style="display:none">
                        		<button class="btn btn-success salvar mt-3" data-tipo="GR">Salvar</button>
+                           <div class="col-12"></div>
+                            <a id = "d_GR" class="btn btn-info justify-content-center download mt-3" target="_blank" style="display:none">Download</a>
                        </div>
                        <div class="row mt-5" style="display:none">
                             <div class="col-7 offset-2">
