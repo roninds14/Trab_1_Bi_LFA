@@ -236,9 +236,8 @@ $(document).ready(function(){
 			tipo: $(this).attr("data-tipo"),
 			data: valor
 		},		
-		function( data, status ){			
-			alert(data);
-				
+		function( data, status ){
+			alert( data );
 		});	
 	});
 	

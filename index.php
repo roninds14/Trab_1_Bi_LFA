@@ -59,6 +59,8 @@
                             </div>
                             <div class="col-4 offset-4 justify-content-center">
                             	<div class="btn btn-success btn-block mb-3 salvar" data-tipo="ER">Salvar</div>
+                                
+                                <a id ="download" target="_blank"></a>
                             </div>
                             <div class="col-6 offset-3">
                             	<div class="form-group">
