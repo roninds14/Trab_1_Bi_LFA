@@ -266,6 +266,44 @@ $(document).ready(function(){
 			
 			valor = vetor1;
 		}
+		else if( $(this).attr("data-tipo") == "AF"){
+			var j = 2;
+			
+			valor = [];
+			
+			valor[0] = $("tbody").children("tr").length;
+			
+			valor[1] = "";
+
+			letras = $("#alfab").val().split("");
+		
+			letras = letras.filter(function(este, i) {
+				return letras.indexOf(este) === i; 
+			});
+            
+			$(".num_virg").each(function(index, element) {
+                var to = ( $(element).val() ).split(",");
+				
+				var from = ( $(element).attr("id") ).split("_");
+				
+				if( $(element).parent().siblings(".col_2").children().prop("checked") )
+					valor[1] += from[1];
+				
+				for( var i =  0; i < to.length; i++ ){
+					var vetor = [];
+					
+					vetor[0] = from[1];
+					vetor[1] = to[i];
+					vetor[2] = letras[ parseInt( from[2] - 3 ) ];
+					
+					valor[j] = vetor;
+					
+					j++;					
+				}	
+            });
+			
+			console.log(valor[1]);
+		}
 		
 		$.post("salvar.php", {
 			tipo: $(this).attr("data-tipo"),
@@ -280,9 +318,68 @@ $(document).ready(function(){
 		});	
 	});
 	
-	$(".download").click(function(){
-		
+	$(".download").click(function(){		
 		$(this).css("display","none");	
+	});
+	
+	$(".convert").click(function(){
+		if( $(this).attr("data-tipo") == "GR" ){
+			$("#alfab").val( $("#terminais").val() + "λ");
+			
+			$("#headingTwo").click();
+			
+			$("#gera_tabela").click();
+			
+			for( var i = 0; i <= $("#variaveis").val().length; i++ )			
+				$("#add_estado").click();
+				
+			$("tbody").children("tr").last().children(".col_2").children().prop("checked", true );
+			
+			var variaveis = "";
+			
+			$(".regras").siblings().children().each(function(index, element) {
+                variaveis += $(element).html();
+            });
+			
+			$(".regras").each(function(index, element) {
+				var deriv = ( $(element).val() ).split("|");
+				
+				for( var i = 0; i < deriv.length; i++ ){
+					var onde = parseInt( $("#terminais").val().indexOf( deriv[i] ) ) + 3;
+						
+					var trans = "#trans_" + index + "_"+  onde ;
+					
+					if( deriv[i].length == 1 ){
+						if( $("#terminais").val().indexOf( deriv[i] ) != -1 ){
+							if( $(trans).val().length )
+								$( trans ).val( $( trans ).val() + "," + variaveis.length );
+							else
+								$( trans ).val( variaveis.length );
+						}
+						else if ( $("#variaveis").val().indexOf( deriv[i] ) != -1 ){
+							onde = parseInt( $("#terminais").val().length ) + 3;						
+							trans = "#trans_" + index + "_"+  onde;							
+							
+							if( $(trans).val().length )
+								$( trans ).val( $( trans ).val() + "," + variaveis.indexOf( deriv[i] ) );
+							else
+								$( trans ).val( variaveis.indexOf( deriv[i] ) );
+						}
+					}
+					else if( deriv[i].length == 2 ){
+						var onde = parseInt( $("#terminais").val().indexOf( deriv[i][0] ) ) + 3;
+						
+						var trans = "#trans_" + index + "_"+  onde ;
+						
+						if( $(trans).val().length )
+								$( trans ).val( $( trans ).val() + "," + variaveis.indexOf( deriv[i][1] ) );
+							else
+								$( trans ).val( variaveis.indexOf( deriv[i][1] ) );
+					}
+				}
+			
+			});			
+		}	
 	});
 	
 });

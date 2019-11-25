@@ -117,8 +117,8 @@
 						<table id="tb_estado" class="table w-75" style="margin:auto">
 							<thead class="thead-dark">
 								<tr>
-									<th>Estado</th>
-									<th>final</th>                                        
+									<th>Estado</th>                                    
+                                    <th>final</th>                                      
 								</tr>
 							</thead>
 							<tbody>                                	
@@ -130,6 +130,11 @@
                         <div class="col-12 text-center mt-2 mb-2">
                         	<button class="btn btn-success mt-2 mb-2 salvar" data-tipo="AF">Salvar</button>
                         </div>
+                        <div class="col-12">                            
+                                                        
+                        </div>
+                        
+                        <a id = "d_AF" class="btn btn-info justify-content-center download" target="_blank" style="display:none">Download</a>
 					</div> 
 					<div class="row" style="display:none">
 						<div class="col-5 offset-3">
@@ -186,8 +191,12 @@
                             </div>                            
                        </div>
                        <div class="row justify-content-center" style="display:none">
+                       		<button class="btn btn-danger mt-3 convert" data-tipo="GR">Converter AF</button>
+	                        <div class="col-12"></div>
+                       
                        		<button class="btn btn-success salvar mt-3" data-tipo="GR">Salvar</button>
                            <div class="col-12"></div>
+                           
                             <a id = "d_GR" class="btn btn-info justify-content-center download mt-3" target="_blank" style="display:none">Download</a>
                        </div>
                        <div class="row mt-5" style="display:none">
