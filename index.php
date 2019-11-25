@@ -127,6 +127,10 @@
 						<div class="col-12 text-center mt-2">
 							<button id="add_estado" class="btn btn-primary">Adicionar Estado</button>
 						</div>
+                        <div class="col-12 text-center">
+                        	<button class="btn btn-danger mt-3 convert" data-tipo="AF">Converter GRD</button>
+	                    </div>
+                        
                         <div class="col-12 text-center mt-2 mb-2">
                         	<button class="btn btn-success mt-2 mb-2 salvar" data-tipo="AF">Salvar</button>
                         </div>

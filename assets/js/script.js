@@ -379,6 +379,50 @@ $(document).ready(function(){
 				}
 			
 			});			
+		}
+		else if( $(this).attr("data-tipo") == "AF" ){
+			var variaveis = "";
+			
+			for( var i = 0; i < $("tbody").children("tr").length; i++ )
+				if( i < 8 ) 
+					variaveis += String.fromCharCode(83+i);
+				else
+					variaveis += String.fromCharCode(83+i-26);
+				
+			$("#variaveis").val( variaveis );
+			
+			$("#headingThree").click();
+			
+			$("#terminais").val( $("#alfab").val() );
+			
+			$("#inicial").val("S");
+			
+			$("#btn_regras").click();
+			
+			$(".num_virg").each(function(index, element) {
+                var deriv = ( $(element).val() ).split(",");
+				
+				if( $(element).val().length ) 
+					for( var i = 0; i < deriv.length; i++ ){
+						var check = "#check_" + deriv[i];					
+						
+						var direcao = $(element).attr("id").split("_");
+						
+						var re = $(".regras" );
+						
+						if( $( re[ direcao[1] ]).val().length )
+							$( re[ direcao[1] ]).val( $( re[ direcao[1] ]).val() + "|" +$("#alfab").val()[parseInt(direcao[2])-3] + variaveis[deriv[i]] );
+						else
+							$( re[ direcao[1] ]).val( $("#alfab").val()[parseInt(direcao[2])-3] + variaveis[deriv[i]] );
+						
+						if( $( check ).prop("checked") ){
+							if( $( re[ direcao[1] ]).val().length )
+								$( re[ direcao[1] ]).val( $( re[ direcao[1] ]).val() + "|" +$("#alfab").val()[parseInt(direcao[2])-3] );
+							else
+								$( re[ direcao[1] ]).val( $("#alfab").val()[parseInt(direcao[2])-3] );
+						}
+					}				
+            });
 		}	
 	});
 	
