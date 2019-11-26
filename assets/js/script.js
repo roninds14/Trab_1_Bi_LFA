@@ -423,7 +423,59 @@ $(document).ready(function(){
 						}
 					}				
             });
-		}	
+		}
+		
+		else if( $(this).attr("data-tipo") == "AFN" ){ return;
+			var novos_estados = [];
+			var estados = [];
+			
+			var num_estados = parseInt( $("tbody").children("tr").length );
+			
+			estados.push( "0" );			
+				
+			while( estados.length ){			 
+				var estado = estados.shift();
+					
+				novos_estados.push( estado );				
+				
+				console.log(estado);	
+				
+				estado = estado.split(",");	
+				
+				var temp = [];
+								
+				for( var j = 0; j < estado.length; j++ ){					
+					var virgula = "";
+					
+					for( var i = 0; i < $("#alfab").val().length; i++)
+					temp[i] = "";	
+				
+					for( var i = 0; i < $("#alfab").val().length; i++){
+						
+						if( estado[j] < num_estados && parseInt( estado[j] )>= 0 ){ 						
+						
+							var local = "#trans_"+estado[j]+"_"+parseInt(i+3);
+							
+													
+							
+							if( !$(local).val().length ) continue;
+							
+							temp[i] = temp[i] + virgula + $( local ).val();
+							virgula = ",";
+						}					
+					}
+					
+					for( var i = 0; i < temp.length; i++ ){
+						if( novos_estados.indexOf( temp[i] ) == -1 )
+							estados.push( temp[i] );
+					}
+				}
+				
+				
+			}
+			
+				
+		}
 	});
 	
 });
